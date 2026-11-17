@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contraste de hipótesis · media con σ conocida</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Contraste de hipótesis</h1>
+  <p>Media poblacional con desviación típica conocida (prueba Z)</p>
+</header>
+
+<main>
+  <section class="card">
+    <form id="form" novalidate>
+      <div class="campo">
+        <label for="cola">Tipo de contraste</label>
+        <select id="cola" name="cola">
+          <option value="bilateral">Bilateral — H₁: μ ≠ μ₀</option>
+          <option value="derecha">Cola derecha — H₁: μ &gt; μ₀</option>
+          <option value="izquierda">Cola izquierda — H₁: μ &lt; μ₀</option>
+        </select>
+      </div>
+
+      <div class="rejilla">
+        <div class="campo">
+          <label for="mu0">Media hipotética (μ₀)</label>
+          <input id="mu0" name="mu0" type="number" step="any" inputmode="decimal" placeholder="50">
+        </div>
+        <div class="campo">
+          <label for="sigma">Desviación típica poblacional (σ)</label>
+          <input id="sigma" name="sigma" type="number" step="any" inputmode="decimal" min="0" placeholder="10">
+        </div>
+      </div>
+
+      <div class="rejilla">
+        <div class="campo">
+          <label for="n">Tamaño de la muestra (n)</label>
+          <input id="n" name="n" type="number" step="1" inputmode="numeric" min="2" placeholder="25">
+        </div>
+        <div class="campo">
+          <label for="xbar">Media muestral (x̄)</label>
+          <input id="xbar" name="xbar" type="number" step="any" inputmode="decimal" placeholder="53.2">
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="alfa">Nivel de significación (α)</label>
+        <input id="alfa" name="alfa" type="number" step="any" inputmode="decimal" min="0" max="1" value="0.05">
+        <p class="ayuda">Usa decimales: 0.05 para el 5 %.</p>
+      </div>
+
+      <p id="error" class="error" role="alert" hidden></p>
+      <button type="submit">Calcular contraste</button>
+    </form>
+  </section>
+
+  <section class="card" id="resultado" hidden>
+    <h2>Resultado</h2>
+    <dl class="datos">
+      <dt>Estadístico Z</dt><dd id="r-z"></dd>
+      <dt>p-valor</dt><dd id="r-p"></dd>
+      <dt>Valor crítico</dt><dd id="r-critico"></dd>
+      <dt>Región de rechazo</dt><dd id="r-region"></dd>
+    </dl>
+    <p id="conclusion" class="decision"></p>
+  </section>
+
+  <section class="card">
+    <div class="cabecera">
+      <h2>Historial</h2>
+      <button type="button" id="vaciar" class="secundario" hidden>Vaciar</button>
+    </div>
+    <ul id="lista" class="historial"></ul>
+    <p id="vacio" class="ayuda">Todavía no hay cálculos guardados.</p>
+  </section>
+</main>
+
+<script src="calc.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
